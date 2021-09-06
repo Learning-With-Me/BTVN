@@ -2,18 +2,27 @@
 using namespace std;
 #define MAX 100
 
-void mang(int &n, int arr[], int x, int k)
+void mang(int &n, int arr[], int x, int &k)
 {
     cin >> n;
+    if (n <= 0 || n > MAX) {
+        return;
+    }
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
         // cout << arr[i];
     }
-    n++;
+
     cin >> x;
     cin >> k;
-    for(int i = n; i >= k; i--){
+    n++;
+    if (k > n)
+    {
+        return;
+    }
+    for (int i = n; i >= k; i--)
+    {
         arr[i - 1] = arr[i - 2];
     }
     arr[k - 1] = x;
@@ -27,6 +36,11 @@ int main()
     int x;
     int k;
     mang(n, arr, x, k);
+    if (k > n || n <= 0 || n > MAX)
+    {
+        cout << "ERROR";
+        return 0;
+    }
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
